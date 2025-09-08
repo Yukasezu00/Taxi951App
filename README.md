@@ -91,7 +91,7 @@ npm run preview
 
 ## 🔐 Omgevingsvariabelen (Google Maps)
 
-1. Maak `.env.local` in de project-root:
+1. Maak `.env` in de project-root:
 
 VITE_GOOGLE_MAPS_API_KEY=JOUW_API_KEY_HIER
 
