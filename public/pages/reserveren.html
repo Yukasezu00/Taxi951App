@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reserveren – Taxi 951</title>
+    <meta name="description" content="Reserveer je taxi rit bij Taxi 951" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical naar je Netlify-pagina -->
+    <link rel="canonical" href="https://taxi951.netlify.app/pages/reserveren.html" />
+
+    <!-- Icons -->
+    <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Reserveren – Taxi 951" />
+    <meta
+      property="og:description"
+      content="Boek snel en eenvoudig je taxi. Taxi 951 is 24/7 beschikbaar in Amsterdam."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://taxi951.netlify.app/pages/reserveren.html" />
+    <meta property="og:image" content="https://taxi951.netlify.app/Day-Image-1.png" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Taxi 951" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/resetstyle.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reserveren.css" />
+
+    <!-- 🔹 Performance: maak DNS/TLS handshakes alvast klaar (géén API-calls/kosten) -->
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//maps.googleapis.com" />
+    <link rel="dns-prefetch" href="//maps.gstatic.com" />
+
+    <!-- Zet Vite key (VITE_GOOGLE_MAPS_API_KEY) op window -->
+    <script type="module" src="/src/expose-env.js"></script>
+
+    <!-- Fade-in -->
+    <script>
+      addEventListener('DOMContentLoaded', () => {
+        const fadeEl = document.querySelector('.fade-in');
+        if (fadeEl) setTimeout(() => fadeEl.classList.add('visible'), 100);
+      });
+    </script>
+  </head>
+
+  <body class="fade-in reserveren-pagina">
+    <div class="page-wrapper">
+      <!-- Navigatie -->
+      <nav class="nav-main" aria-label="Hoofdnavigatie">
+        <div class="nav-container">
+          <a href="../index.html" class="brand">Taxi 951</a>
+
+          <div
+            class="hamburger"
+            role="button"
+            aria-label="Menu openen"
+            aria-controls="hoofdmenu"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <svg
+              class="hamburger-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="30"
+              height="30"
+              aria-hidden="true"
+            >
+              <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z" />
+            </svg>
+          </div>
+
+          <ul id="hoofdmenu" class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#diensten">Diensten</a></li>
+            <li><a href="../index.html#tarieven">Tarieven</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="reserveren.html" aria-current="page">Reserveren</a></li>
+            <li><a href="../index.html#overons">Over Ons</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Formulier -->
+      <main>
+        <section class="section" aria-labelledby="reserveer-titel">
+          <div class="formulier-wrapper">
+            <h2 id="reserveer-titel">Reserveer jouw rit</h2>
+            <p>Vul het onderstaande formulier in om een rit te reserveren.</p>
+
+            <form class="formulier-reserveren" novalidate>
+              <label for="naam">Naam *</label>
+              <input
+                type="text"
+                id="naam"
+                name="naam"
+                required
+                placeholder="Bijv. Jan Jansen"
+                autocomplete="name"
+                inputmode="text"
+              />
+
+              <label for="email">E-mail *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="jouw@email.nl"
+                autocomplete="email"
+                inputmode="email"
+              />
+
+              <label for="telefoon">Telefoonnummer *</label>
+              <input
+                type="tel"
+                id="telefoon"
+                name="telefoon"
+                required
+                placeholder="0612345678 of +31612345678"
+                autocomplete="tel"
+                inputmode="tel"
+                aria-describedby="tel-help"
+              />
+              <small id="tel-help">Bijv 0612345678 of met +31/0031 bijv. +31612345678.</small>
+
+              <label for="datum">Datum *</label>
+              <input type="date" id="datum" name="datum" required autocomplete="bday" />
+
+              <label for="tijd">Tijdstip *</label>
+              <input type="time" id="tijd" name="tijd" required />
+
+              <label for="ophaal">Ophaallocatie *</label>
+              <input
+                type="text"
+                id="ophaal"
+                name="ophaal"
+                required
+                placeholder="Bijv. Havikslaan 1, Amsterdam"
+                autocomplete="address-line1"
+                inputmode="text"
+              />
+
+              <label for="bestemming">Bestemming *</label>
+              <input
+                type="text"
+                id="bestemming"
+                name="bestemming"
+                required
+                placeholder="Bijv. Stadionplein 5, Amsterdam"
+                autocomplete="address-line1"
+                inputmode="text"
+              />
+
+              <label for="opmerkingen">Opmerkingen (optioneel)</label>
+              <textarea
+                id="opmerkingen"
+                name="opmerkingen"
+                placeholder="Bijv. extra bagage, huisdieren..."
+              ></textarea>
+
+              <button type="submit" class="cta-button">Verzenden</button>
+            </form>
+
+            <!-- Contact -->
+            <div class="section section-contact">
+              <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <a href="tel:0650680749">Bel ons: 0650680749</a>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">💬</span>
+                <a href="https://wa.me/31650680749" target="_blank" rel="noopener noreferrer"
+                  >WhatsApp ons</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-container">
+          <p>© 2025 Taxi 951. Alle rechten voorbehouden.</p>
+          <div class="footer-links">
+            <a href="privacy.html">Privacybeleid</a>
+            <a href="voorwaarden.html">Algemene voorwaarden</a>
+            <a class="link-underline" href="mailto:info@taxi951.nl">info@taxi951.nl</a>
+            <a class="link-underline" href="tel:0650680749">Bel: 0650680749</a>
+            <a
+              class="link-underline"
+              href="https://wa.me/31650680749"
+              target="_blank"
+              rel="noopener"
+              >WhatsApp</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scroll-to-top -->
+    <button id="scrollTopBtn" title="Terug naar boven" aria-label="Terug naar boven">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="white"
+        viewBox="0 0 24 24"
+      >
+        <path d="M12 2L5 9h4v7h6V9h4z" />
+      </svg>
+    </button>
+
+    <!-- Logica: tooltips, validatie (tel + adressen), success-state -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('.formulier-reserveren');
+        const wrapper = document.querySelector('.formulier-wrapper');
+
+        const $ = (id) => document.getElementById(id);
+        const requiredIds = ['naam', 'email', 'telefoon', 'datum', 'tijd', 'ophaal', 'bestemming'];
+
+        function placeAfter(refEl, newEl) {
+          refEl.parentNode.insertBefore(newEl, refEl.nextSibling);
+        }
+        function setFieldTip(input, msg) {
+          let afterEl = input;
+          if (input.id === 'telefoon') {
+            const help = document.getElementById('tel-help');
+            if (help) afterEl = help;
+          }
+          let tip = input._tipEl;
+          if (!tip) {
+            tip = document.createElement('div');
+            tip.className = 'field-error-tip';
+            tip.setAttribute('role', 'status');
+            tip.setAttribute('aria-live', 'polite');
+            tip.innerHTML = `
+              <span class="tip-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="11" fill="rgba(211,47,47,.10)"></circle>
+                  <path d="M12 5 L20 19 H4 Z" fill="#fff" stroke="#d32f2f" stroke-width="1.6" />
+                  <rect x="11.25" y="9" width="1.5" height="6" fill="#d32f2f" />
+                  <rect x="11.25" y="16.5" width="1.5" height="1.5" fill="#d32f2f" />
+                </svg>
+              </span>
+              <span class="tip-msg"></span>
+            `;
+            placeAfter(afterEl, tip);
+            input._tipEl = tip;
+          }
+          tip.querySelector('.tip-msg').textContent = msg;
+          tip.style.display = 'flex';
+          input.classList.add('is-invalid');
+        }
+        function clearFieldTip(input) {
+          if (input._tipEl) input._tipEl.style.display = 'none';
+          input.classList.remove('is-invalid');
+        }
+        requiredIds.forEach((id) => {
+          const el = $(id);
+          if (el) {
+            el.addEventListener('input', () => clearFieldTip(el));
+            el.addEventListener('change', () => clearFieldTip(el));
+          }
+        });
+
+        function showFormError(msg) {
+          let box = wrapper.querySelector('.form-error');
+          if (!box) {
+            box = document.createElement('div');
+            box.className = 'form-error';
+            box.setAttribute('role', 'alert');
+            box.setAttribute('aria-live', 'assertive');
+            box.innerHTML = `
+              <span class="warn-anim" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" fill="rgba(211,47,47,.10)"></circle>
+                  <path d="M12 5 L20 19 H4 Z" fill="#fff" stroke="#d32f2f" stroke-width="1.6" />
+                  <rect x="11.25" y="9" width="1.5" height="6" fill="#d32f2f" />
+                  <rect x="11.25" y="16.5" width="1.5" height="1.5" fill="#d32f2f" />
+                </svg>
+              </span>
+              <strong class="msg"></strong>
+            `;
+            wrapper.prepend(box);
+          }
+          box.querySelector('.msg').textContent = msg;
+          box.classList.remove('hidden');
+        }
+
+        function normalizePhone(raw) {
+          if (!raw) return '';
+          let v = String(raw).replace(/[\s().-]/g, '');
+          if (v.startsWith('0031')) v = '+31' + v.slice(4);
+          if (v.startsWith('+31')) v = '+31' + v.slice(3).replace(/^0+/, '');
+          return v;
+        }
+        function isValidDutchPhone(v) {
+          return /^0\d{9}$/.test(v) || /^\+31\d{9}$/.test(v);
+        }
+        function validatePhone(input) {
+          const norm = normalizePhone(input.value.trim());
+          input.value = norm || input.value;
+          if (!isValidDutchPhone(norm)) {
+            setFieldTip(
+              input,
+              'Gebruik 0612345678 of +31612345678 (0031 ook toegestaan). Spaties/streepjes/haakjes zijn oké.',
+            );
+            return false;
+          }
+          clearFieldTip(input);
+          return true;
+        }
+        $('telefoon')?.addEventListener('blur', () => validatePhone($('telefoon')));
+
+        async function validateAddress(input, label) {
+          try {
+            const val = input.value.trim();
+            if (!val) {
+              setFieldTip(input, `${label} is verplicht.`);
+              return false;
+            }
+            if (typeof ensureGoogleReady === 'function') {
+              await ensureGoogleReady();
+            }
+            if (!(window.google && google.maps && google.maps.Geocoder)) {
+              showFormError('Kaartdienst kon niet laden. Probeer het opnieuw.');
+              return false;
+            }
+            const geocoder = new google.maps.Geocoder();
+            const ok = await new Promise((resolve) => {
+              geocoder.geocode({ address: val }, (results, status) => {
+                if (status === 'OK' && results && results[0]) {
+                  clearFieldTip(input);
+                  input.dataset.validPlace = '1';
+                  input.dataset.placeId = results[0].place_id || '';
+                  input.dataset.formatted = results[0].formatted_address || val;
+                  resolve(true);
+                } else {
+                  setFieldTip(
+                    input,
+                    `${label}: kies een adres uit de lijst of vul een volledig adres in.`,
+                  );
+                  resolve(false);
+                }
+              });
+            });
+            return ok;
+          } catch {
+            setFieldTip(input, `${label}: controle mislukt. Probeer opnieuw.`);
+            return false;
+          }
+        }
+        $('ophaal')?.addEventListener('blur', () => validateAddress($('ophaal'), 'Ophaallocatie'));
+        $('bestemming')?.addEventListener('blur', () =>
+          validateAddress($('bestemming'), 'Bestemming'),
+        );
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const firstEmpty = requiredIds.find((id) => !$(id).value.trim());
+          if (firstEmpty) {
+            setFieldTip($(firstEmpty), 'Dit veld is verplicht.');
+            showFormError('Vul alle verplichte velden in.');
+            $(firstEmpty).focus();
+            return;
+          }
+
+          if (!$('email').checkValidity()) {
+            setFieldTip($('email'), 'Vul een geldig e-mailadres in.');
+            showFormError('Vul een geldig e-mailadres in.');
+            $('email').focus();
+            return;
+          }
+
+          if (!validatePhone($('telefoon'))) {
+            showFormError('Vul een geldig Nederlands telefoonnummer in.');
+            $('telefoon').focus();
+            return;
+          }
+
+          const okOphaal = await validateAddress($('ophaal'), 'Ophaallocatie');
+          if (!okOphaal) return;
+          const okBest = await validateAddress($('bestemming'), 'Bestemming');
+          if (!okBest) return;
+
+          const wrapper = document.querySelector('.formulier-wrapper');
+          wrapper.innerHTML = `
+            <h2 class="thanks-title">
+              <span class="mail-anim" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" fill="rgba(11,184,147,.10)"></circle>
+                  <rect x="4" y="6" width="16" height="12" rx="2" ry="2"
+                        fill="#fff" stroke="#0aa181" stroke-width="1.5"></rect>
+                  <path d="M4.8 7.2 L12 12.2 L19.2 7.2" fill="none"
+                        stroke="#0bb893" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              Bedankt voor je reservering!
+            </h2>
+            <p>We hebben je gegevens ontvangen. Je ontvangt spoedig een bevestiging per e-mail.</p>
+            <p>Heb je nog vragen? <a href="../index.html#contact">Neem gerust contact met ons op</a>.</p>
+            <br />
+            <a href="../index.html" class="cta-button">Terug naar Home</a>
+          `;
+          document.body.classList.add('thanks-state');
+        });
+      });
+    </script>
+
+    <!-- Jouw hoofdscript (Maps + helpers) -->
+    <script src="../assets/js/main.js" defer></script>
+  </body>
+</html>

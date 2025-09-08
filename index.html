@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taxi 951 – Betrouwbaar vervoer in Amsterdam</title>
+
+    <meta
+      name="description"
+      content="Altijd betrouwbaar vervoer in Amsterdam, 24/7 beschikbaar. Boek eenvoudig je taxi via onze calculator of contacteer ons direct."
+    />
+    <meta name="robots" content="index, follow" />
+    <!-- ✅ Canonical houdt je huidige (Netlify) domein aan -->
+    <link rel="canonical" href="https://taxi951.netlify.app/" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <link rel="icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+
+    <!-- ✅ Open Graph naar je Netlify-domein -->
+    <meta property="og:title" content="Taxi 951 – Betrouwbaar vervoer in Amsterdam" />
+    <meta
+      property="og:description"
+      content="Boek snel en eenvoudig je taxi – dag en nacht beschikbaar in Amsterdam."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://taxi951.netlify.app/" />
+    <meta property="og:image" content="https://taxi951.netlify.app/Day-Image-1.png" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Taxi 951" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TaxiService",
+        "name": "Taxi 951",
+        "areaServed": "Amsterdam",
+        "telephone": "+31650680749",
+        "url": "https://taxi951.netlify.app/",
+        "image": "https://taxi951.netlify.app/Day-Image-1.png",
+        "sameAs": ["https://wa.me/31650680749"]
+      }
+    </script>
+
+    <!-- 🔹 Performance: maak DNS/TLS handshakes alvast klaar (géén API-calls/kosten) -->
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//maps.googleapis.com" />
+    <link rel="dns-prefetch" href="//maps.gstatic.com" />
+
+    <!-- (Optioneel) Prefetch reserverenpagina bij snelle verbindingen -->
+    <script>
+      (function () {
+        var c = navigator.connection || {};
+        if (c.saveData) return;
+        if (c.effectiveType && !/4g|5g/i.test(c.effectiveType)) return;
+        var l = document.createElement('link');
+        l.rel = 'prefetch';
+        l.href = '/pages/reserveren.html';
+        l.as = 'document';
+        document.head.appendChild(l);
+      })();
+    </script>
+
+    <!-- Zorgt dat de .env Vite key (VITE_GOOGLE_MAPS_API_KEY) op window staat -->
+    <script type="module" src="/src/expose-env.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React app -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- *** BELANGRIJK ***: laadt je public JS (calculator, Maps, galerij) -->
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
