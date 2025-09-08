@@ -113,7 +113,7 @@ Zorg dat je `/public` map bestaat met `/assets` en `/pages`. Netlify neemt dat a
 
 ## 📜 Licentie
 
-Gebruik in overleg; bedoeld voor portfolio/opleiding en bedrijfswebsite Taxi 951.
+Gebruik in overleg; bedoeld voor portfolio en bedrijfswebsite Taxi 951.
 
 ## Changelog (kort)
 
